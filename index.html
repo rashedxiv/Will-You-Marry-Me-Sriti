@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Will You Marry Me? 💘</title>
+  <link rel="icon" type="image" href="icon/favicon2.png">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
@@ -23,7 +25,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+      background: linear-gradient(
+        -45deg,
+        #ff9a9e,
+        #fad0c4,
+        #fbc2eb,
+        #a18cd1
+      );
       background-size: 400% 400%;
       animation: bgMove 12s ease infinite;
       font-family: "Poppins", sans-serif;
@@ -31,12 +39,23 @@
     }
 
     @keyframes bgMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
     }
 
-    /* Main Card */
+    /* =========================
+       MAIN CARD
+    ========================= */
+
     .card {
       width: min(92%, 420px);
       padding: 40px 30px 45px;
@@ -56,6 +75,7 @@
         opacity: 0;
         transform: translateY(30px) scale(0.95);
       }
+
       to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -63,16 +83,142 @@
     }
 
     /* Glow ring */
+
     .card::before {
       content: "";
       position: absolute;
       inset: -2px;
       border-radius: 30px;
-      background: linear-gradient(120deg, #ff4d6d, #ff9a9e, #fbc2eb);
+      background: linear-gradient(
+        120deg,
+        #ff4d6d,
+        #ff9a9e,
+        #fbc2eb
+      );
       z-index: -1;
       filter: blur(20px);
       opacity: 0.7;
     }
+
+    /* =========================
+       CARD COVER
+    ========================= */
+
+    .card-cover {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      border-radius: 28px;
+      background: linear-gradient(
+        135deg,
+        #ff4d6d,
+        #ff758f,
+        #fbc2eb
+      );
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      cursor: pointer;
+
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(.68,-0.55,.27,1.55);
+
+      overflow: hidden;
+    }
+
+    .card-cover::before,
+    .card-cover::after {
+      content: "❤️";
+      position: absolute;
+      font-size: 45px;
+      opacity: 0.25;
+    }
+
+    .card-cover::before {
+      top: 25px;
+      left: 25px;
+    }
+
+    .card-cover::after {
+      bottom: 25px;
+      right: 25px;
+    }
+
+    .card-cover:hover {
+      transform: scale(1.02);
+    }
+
+    .card-cover.open {
+      opacity: 0;
+      transform: scale(1.2) rotate(5deg);
+      pointer-events: none;
+    }
+
+    .cover-heart {
+      font-size: 75px;
+      margin-bottom: 15px;
+      animation: coverHeartbeat 1.5s infinite;
+    }
+
+    @keyframes coverHeartbeat {
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.15);
+      }
+    }
+
+    .card-cover h1 {
+      font-family: "Playfair Display", serif;
+      color: white;
+      font-size: 34px;
+      margin-bottom: 10px;
+      text-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+
+    .card-cover p {
+      color: white;
+      font-size: 14px;
+      opacity: 0.9;
+      padding: 0 20px;
+      font-style: italic;
+    }
+
+    .cover-hint {
+      margin-top: 25px;
+      padding: 12px 25px;
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 30px;
+      color: white;
+      font-size: 14px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(5px);
+      animation: hintPulse 2s infinite;
+    }
+
+    @keyframes hintPulse {
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+
+      50% {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+    }
+
+    /* =========================
+       PROPOSAL CONTENT
+    ========================= */
 
     .emoji {
       font-size: 68px;
@@ -81,10 +227,22 @@
     }
 
     @keyframes heartbeat {
-      0%,100% { transform: scale(1); }
-      25% { transform: scale(1.08); }
-      50% { transform: scale(1); }
-      75% { transform: scale(1.12); }
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      25% {
+        transform: scale(1.08);
+      }
+
+      50% {
+        transform: scale(1);
+      }
+
+      75% {
+        transform: scale(1.12);
+      }
     }
 
     h2 {
@@ -118,14 +276,20 @@
 
     #yes {
       left: 12%;
-      background: linear-gradient(135deg, #ff4d6d, #ff758f);
+      background: linear-gradient(
+        135deg,
+        #ff4d6d,
+        #ff758f
+      );
       color: #fff;
-      box-shadow: 0 15px 35px rgba(255,77,109,0.55);
+      box-shadow:
+        0 15px 35px rgba(255,77,109,0.55);
     }
 
     #yes:hover {
       transform: translateY(-3px);
-      box-shadow: 0 20px 40px rgba(255,77,109,0.7);
+      box-shadow:
+        0 20px 40px rgba(255,77,109,0.7);
     }
 
     #no {
@@ -136,12 +300,15 @@
 
     .hint {
       margin-top: 28px;
-      font-size: 13px;
+      font-size: 14px;
       color: #6b6b6b;
       font-style: italic;
     }
 
-    /* Floating Hearts */
+    /* =========================
+       FLOATING HEARTS
+    ========================= */
+
     .heart {
       position: absolute;
       bottom: -20px;
@@ -155,6 +322,7 @@
         transform: translateY(0) scale(1);
         opacity: 1;
       }
+
       to {
         transform: translateY(-120vh) scale(1.8);
         opacity: 0;
@@ -171,11 +339,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
       background: rgba(74, 28, 47, 0.35);
       backdrop-filter: blur(8px);
+
       opacity: 0;
       visibility: hidden;
+
       transition: all 0.5s ease;
+
       z-index: 100;
       padding: 20px;
     }
@@ -189,13 +361,20 @@
       width: min(92%, 460px);
       padding: 45px 30px;
       text-align: center;
+
       background: rgba(255, 255, 255, 0.95);
+
       border-radius: 30px;
+
       box-shadow:
         0 30px 90px rgba(0, 0, 0, 0.3),
         0 0 50px rgba(255, 77, 109, 0.35);
+
       transform: scale(0.7) translateY(30px);
-      transition: transform 0.6s cubic-bezier(.17,.67,.3,1.3);
+
+      transition:
+        transform 0.6s cubic-bezier(.17,.67,.3,1.3);
+
       position: relative;
       overflow: hidden;
     }
@@ -206,40 +385,56 @@
 
     .success-content::before {
       content: "";
+
       position: absolute;
+
       width: 180px;
       height: 180px;
+
       background: #ffb3c1;
+
       border-radius: 50%;
+
       top: -100px;
       left: -80px;
+
       opacity: 0.35;
     }
 
     .success-content::after {
       content: "";
+
       position: absolute;
+
       width: 180px;
       height: 180px;
+
       background: #fbc2eb;
+
       border-radius: 50%;
+
       bottom: -100px;
       right: -80px;
+
       opacity: 0.35;
     }
 
     .success-heart {
       font-size: 75px;
       margin-bottom: 15px;
+
       animation: successHeart 1s ease infinite;
+
       position: relative;
       z-index: 2;
     }
 
     @keyframes successHeart {
-      0%, 100% {
+      0%,
+      100% {
         transform: scale(1);
       }
+
       50% {
         transform: scale(1.2);
       }
@@ -247,18 +442,28 @@
 
     .success-content h1 {
       font-family: "Playfair Display", serif;
+
       color: #4a1c2f;
+
       font-size: 30px;
+
       line-height: 1.35;
+
       margin-bottom: 15px;
+
       position: relative;
       z-index: 2;
     }
 
     .success-content p {
       color: #777;
+
       font-size: 15px;
+
+      font-style: italic;
+
       line-height: 1.7;
+
       position: relative;
       z-index: 2;
     }
@@ -266,23 +471,41 @@
     .close-btn {
       position: relative;
       z-index: 2;
+
       margin-top: 25px;
+
       padding: 12px 30px;
-      background: linear-gradient(135deg, #ff4d6d, #ff758f);
+
+      background: linear-gradient(
+        135deg,
+        #ff4d6d,
+        #ff758f
+      );
+
       color: white;
+
       border: none;
+
       border-radius: 30px;
+
       font-family: "Poppins", sans-serif;
+
       cursor: pointer;
-      box-shadow: 0 10px 25px rgba(255, 77, 109, 0.35);
+
+      box-shadow:
+        0 10px 25px rgba(255, 77, 109, 0.35);
     }
 
     .close-btn:hover {
       transform: translateY(-2px);
     }
 
-    /* Responsive */
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
     @media (max-width: 480px) {
+
       h2 {
         font-size: 23px;
       }
@@ -311,6 +534,23 @@
       .success-content h1 {
         font-size: 25px;
       }
+
+      .card-cover h1 {
+        font-size: 29px;
+      }
+
+      .cover-heart {
+        font-size: 65px;
+      }
+
+      .card-cover p {
+        font-size: 13px;
+      }
+
+      .cover-hint {
+        font-size: 13px;
+        padding: 11px 22px;
+      }
     }
   </style>
 </head>
@@ -330,31 +570,80 @@
   </audio>
 
 
-  <!-- Main Proposal Card -->
+  <!-- =========================
+       MAIN PROPOSAL CARD
+  ========================= -->
+
   <div class="card" id="mainCard">
-    <div class="emoji">🐱❤️</div>
+
+    <!-- =========================
+         CARD COVER
+    ========================= -->
+
+    <div class="card-cover" id="cardCover">
+
+      <div class="cover-heart">
+        💖
+      </div>
+
+      <h1>
+        Hello Sritiii!
+      </h1>
+
+      <p>
+        There is something special waiting for you...
+      </p>
+
+      <div class="cover-hint">
+        Touch my heart 💕
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         PROPOSAL
+    ========================= -->
+
+    <div class="emoji">
+      🐱❤️
+    </div>
 
     <h2>
-      Sriti, My Sweetest Love,<br>
+      My Sweetest Love,<br>
       Will You Marry Me?
     </h2>
 
     <div class="buttons">
-      <button id="yes">Yes 💖</button>
-      <button id="no">No 🙈</button>
+
+      <button id="yes">
+        Yes 💖
+      </button>
+
+      <button id="no">
+        No 🙈
+      </button>
+
     </div>
 
     <div class="hint">
       Some love stories don’t allow “no” ✨
     </div>
+
   </div>
 
 
-  <!-- Success Card -->
+  <!-- =========================
+       SUCCESS CARD
+  ========================= -->
+
   <div class="success-card" id="successCard">
+
     <div class="success-content">
 
-      <div class="success-heart">💖</div>
+      <div class="success-heart">
+        💖
+      </div>
 
       <h1>
         WoW! My Love!!! 💕<br>
@@ -371,14 +660,23 @@
       </button>
 
     </div>
+
   </div>
 
 
-  <!-- Sound Effects -->
+  <!-- =========================
+       SOUND EFFECTS
+  ========================= -->
 
-  <audio id="hoverSound" src="soundeffect/pop.wav"></audio>
+  <audio
+    id="hoverSound"
+    src="soundeffect/pop.wav">
+  </audio>
 
-  <audio id="yesSound" src="soundeffect/achievement.wav"></audio>
+  <audio
+    id="yesSound"
+    src="soundeffect/achievement.wav">
+  </audio>
 
 
   <script>
@@ -387,12 +685,23 @@
        ELEMENTS
     ========================= */
 
-    const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
-    const card = document.querySelector(".card");
+    const noBtn =
+      document.getElementById("no");
 
-    const hoverSound = document.getElementById("hoverSound");
-    const yesSound = document.getElementById("yesSound");
+    const yesBtn =
+      document.getElementById("yes");
+
+    const card =
+      document.querySelector(".card");
+
+    const cardCover =
+      document.getElementById("cardCover");
+
+    const hoverSound =
+      document.getElementById("hoverSound");
+
+    const yesSound =
+      document.getElementById("yesSound");
 
     const backgroundMusic =
       document.getElementById("backgroundMusic");
@@ -408,96 +717,172 @@
        BACKGROUND MUSIC
     ========================= */
 
-    // Set music volume
     backgroundMusic.volume = 0.5;
+
 
     /*
       Modern browsers may block autoplay
       when audio has sound.
 
-      If autoplay is blocked, the music
-      will start after the user's first
-      interaction with the page.
+      The music will start after the
+      user's first interaction.
     */
 
-    document.addEventListener("click", () => {
+    document.addEventListener(
+      "click",
+      () => {
 
-      backgroundMusic.play().catch(() => {});
+        backgroundMusic
+          .play()
+          .catch(() => {});
 
-    }, { once: true });
+      },
+      { once: true }
+    );
+
+
+    /* =========================
+       CARD COVER
+    ========================= */
+
+    cardCover.addEventListener(
+      "click",
+      () => {
+
+        // Start background music
+        backgroundMusic
+          .play()
+          .catch(() => {});
+
+        // Open the cover
+        cardCover.classList.add("open");
+
+      }
+    );
 
 
     /* =========================
        NO BUTTON
     ========================= */
 
-    noBtn.addEventListener("mouseenter", () => {
+    noBtn.addEventListener(
+      "mouseenter",
+      () => {
 
-      hoverSound.currentTime = 0;
-      hoverSound.play().catch(() => {});
+        hoverSound.currentTime = 0;
 
-      const cardRect =
-        card.getBoundingClientRect();
+        hoverSound
+          .play()
+          .catch(() => {});
 
-      const btnRect =
-        noBtn.getBoundingClientRect();
 
-      const maxX =
-        cardRect.width - btnRect.width - 10;
+        const cardRect =
+          card.getBoundingClientRect();
 
-      const maxY =
-        cardRect.height - btnRect.height - 10;
+        const btnRect =
+          noBtn.getBoundingClientRect();
 
-      noBtn.style.left =
-        Math.random() * maxX + "px";
 
-      noBtn.style.top =
-        Math.random() * maxY + "px";
-    });
+        const maxX =
+          cardRect.width -
+          btnRect.width -
+          10;
+
+        const maxY =
+          cardRect.height -
+          btnRect.height -
+          10;
+
+
+        noBtn.style.left =
+          Math.random() * maxX + "px";
+
+        noBtn.style.top =
+          Math.random() * maxY + "px";
+
+      }
+    );
 
 
     /* =========================
        YES BUTTON
     ========================= */
 
-    yesBtn.addEventListener("click", () => {
+    yesBtn.addEventListener(
+      "click",
+      () => {
 
-      yesSound.currentTime = 0;
+        yesSound.currentTime = 0;
 
-      yesSound.play().catch(() => {});
-
-
-      /* Confetti */
-
-      confetti({
-        particleCount: 260,
-        spread: 120,
-        origin: {
-          y: 0.65
-        }
-      });
+        yesSound
+          .play()
+          .catch(() => {});
 
 
-      /* Show Success Card */
+        /* Confetti */
 
-      setTimeout(() => {
+        confetti({
+          particleCount: 260,
 
-        successCard.classList.add("show");
+          spread: 120,
 
-      }, 500);
+          origin: {
+            y: 0.65
+          }
+        });
 
-    });
+
+        /* Show Success Card */
+
+        setTimeout(
+          () => {
+
+            successCard.classList.add("show");
+
+          },
+          500
+        );
+
+      }
+    );
 
 
     /* =========================
-       CLOSE SUCCESS CARD
+       SUCCESS CARD BUTTON
+       RETURN TO COVER + STOP MUSIC
     ========================= */
 
-    closeBtn.addEventListener("click", () => {
+    closeBtn.addEventListener(
+      "click",
+      () => {
 
-      successCard.classList.remove("show");
+        /* Close success card */
 
-    });
+        successCard.classList.remove("show");
+
+
+        /* Stop background music */
+
+        backgroundMusic.pause();
+
+
+        /* Reset music to beginning */
+
+        backgroundMusic.currentTime = 0;
+
+
+        /* Return to cover */
+
+        cardCover.classList.remove("open");
+
+
+        /* Reset No button position */
+
+        noBtn.style.left = "55%";
+        noBtn.style.top = "auto";
+
+      }
+    );
 
 
     /* =========================
@@ -511,35 +896,48 @@
 
       heart.className = "heart";
 
+
       heart.innerHTML =
         Math.random() > 0.5
           ? "❤️"
           : "💗";
 
+
       heart.style.left =
         Math.random() * 100 + "vw";
+
 
       heart.style.fontSize =
         Math.random() * 22 + 14 + "px";
 
+
       heart.style.animationDuration =
         Math.random() * 3 + 4 + "s";
+
 
       heart.style.opacity =
         Math.random() * 0.5 + 0.4;
 
+
       document.body.appendChild(heart);
 
-      setTimeout(() => {
 
-        heart.remove();
+      setTimeout(
+        () => {
 
-      }, 8000);
+          heart.remove();
+
+        },
+        8000
+      );
 
     }
 
 
-    setInterval(createHeart, 380);
+    setInterval(
+      createHeart,
+      380
+    );
 
   </script>
 
