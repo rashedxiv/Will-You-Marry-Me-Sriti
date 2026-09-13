@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Be My Valentine 💘</title>
+  <title>Will You Marry Me? 💘</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
@@ -36,7 +37,7 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Card */
+    /* Main Card */
     .card {
       width: min(92%, 420px);
       padding: 40px 30px 45px;
@@ -52,8 +53,14 @@
     }
 
     @keyframes cardIn {
-      from { opacity: 0; transform: translateY(30px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     /* Glow ring */
@@ -135,7 +142,7 @@
       font-style: italic;
     }
 
-    /* Floating depth hearts */
+    /* Floating Hearts */
     .heart {
       position: absolute;
       bottom: -20px;
@@ -155,43 +162,230 @@
       }
     }
 
+    /* =========================
+       SUCCESS CARD
+    ========================= */
+
+    .success-card {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(74, 28, 47, 0.35);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s ease;
+      z-index: 100;
+      padding: 20px;
+    }
+
+    .success-card.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .success-content {
+      width: min(92%, 460px);
+      padding: 45px 30px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 30px;
+      box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.3),
+        0 0 50px rgba(255, 77, 109, 0.35);
+      transform: scale(0.7) translateY(30px);
+      transition: transform 0.6s cubic-bezier(.17,.67,.3,1.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .success-card.show .success-content {
+      transform: scale(1) translateY(0);
+    }
+
+    .success-content::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background: #ffb3c1;
+      border-radius: 50%;
+      top: -100px;
+      left: -80px;
+      opacity: 0.35;
+    }
+
+    .success-content::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background: #fbc2eb;
+      border-radius: 50%;
+      bottom: -100px;
+      right: -80px;
+      opacity: 0.35;
+    }
+
+    .success-heart {
+      font-size: 75px;
+      margin-bottom: 15px;
+      animation: successHeart 1s ease infinite;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes successHeart {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
+
+    .success-content h1 {
+      font-family: "Playfair Display", serif;
+      color: #4a1c2f;
+      font-size: 30px;
+      line-height: 1.35;
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .success-content p {
+      color: #777;
+      font-size: 15px;
+      line-height: 1.7;
+      position: relative;
+      z-index: 2;
+    }
+
+    .close-btn {
+      position: relative;
+      z-index: 2;
+      margin-top: 25px;
+      padding: 12px 30px;
+      background: linear-gradient(135deg, #ff4d6d, #ff758f);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-family: "Poppins", sans-serif;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(255, 77, 109, 0.35);
+    }
+
+    .close-btn:hover {
+      transform: translateY(-2px);
+    }
+
     /* Responsive */
     @media (max-width: 480px) {
-      h2 { font-size: 23px; }
-      .emoji { font-size: 58px; }
-      button { padding: 12px 28px; font-size: 15px; }
-      #yes { left: 8%; }
-      #no { left: 55%; }
+      h2 {
+        font-size: 23px;
+      }
+
+      .emoji {
+        font-size: 58px;
+      }
+
+      button {
+        padding: 12px 28px;
+        font-size: 15px;
+      }
+
+      #yes {
+        left: 8%;
+      }
+
+      #no {
+        left: 55%;
+      }
+
+      .success-content {
+        padding: 40px 22px;
+      }
+
+      .success-content h1 {
+        font-size: 25px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="card">
+  <!-- Main Proposal Card -->
+  <div class="card" id="mainCard">
     <div class="emoji">🐱❤️</div>
-    <h2>Sriti Babu,<br>Will You Marry Me?</h2>
+
+    <h2>
+      Sriti, My Sweetest Love,<br>
+      Will You Marry Me?
+    </h2>
 
     <div class="buttons">
       <button id="yes">Yes 💖</button>
       <button id="no">No 🙈</button>
     </div>
 
-    <div class="hint">Some love stories don’t allow “no” ✨</div>
+    <div class="hint">
+      Some love stories don’t allow “no” ✨
+    </div>
+  </div>
+
+  <!-- Success Card -->
+  <div class="success-card" id="successCard">
+    <div class="success-content">
+
+      <div class="success-heart">💖</div>
+
+      <h1>
+        WoW! My Love!!! 💕<br>
+        I can’t wait anymore<br>
+        to marry you!
+      </h1>
+
+      <p>
+        You just made my heart the happiest heart in the world. 🥰
+      </p>
+
+      <button class="close-btn" id="closeBtn">
+        Forever Yours 💕
+      </button>
+
+    </div>
   </div>
 
   <!-- Sounds -->
-  <audio id="hoverSound" src="https://assets.mixkit.co/sfx/preview/mixkit-cartoon-voice-laugh-343.mp3"></audio>
-  <audio id="yesSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3"></audio>
+  <audio
+    id="hoverSound"
+    src="https://assets.mixkit.co/sfx/preview/mixkit-cartoon-voice-laugh-343.mp3">
+  </audio>
+
+  <audio
+    id="yesSound"
+    src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3">
+  </audio>
 
   <script>
     const noBtn = document.getElementById("no");
     const yesBtn = document.getElementById("yes");
     const card = document.querySelector(".card");
+
     const hoverSound = document.getElementById("hoverSound");
     const yesSound = document.getElementById("yesSound");
 
+    const successCard = document.getElementById("successCard");
+    const closeBtn = document.getElementById("closeBtn");
+
+
+    /* NO BUTTON */
     noBtn.addEventListener("mouseenter", () => {
+
       hoverSound.currentTime = 0;
       hoverSound.play();
 
@@ -205,31 +399,62 @@
       noBtn.style.top = Math.random() * maxY + "px";
     });
 
+
+    /* YES BUTTON */
     yesBtn.addEventListener("click", () => {
+
+      yesSound.currentTime = 0;
       yesSound.play();
 
+      /* Confetti */
       confetti({
         particleCount: 260,
         spread: 120,
-        origin: { y: 0.65 }
+        origin: {
+          y: 0.65
+        }
       });
 
+      /* Show Success Card */
       setTimeout(() => {
-        alert("WoW! My Love!!! 💕 I can’t wait anymore to marry you!");
+        successCard.classList.add("show");
       }, 500);
     });
 
+
+    /* CLOSE SUCCESS CARD */
+    closeBtn.addEventListener("click", () => {
+      successCard.classList.remove("show");
+    });
+
+
+    /* Floating Hearts */
     function createHeart() {
+
       const heart = document.createElement("div");
+
       heart.className = "heart";
-      heart.innerHTML = Math.random() > 0.5 ? "❤️" : "💗";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 22 + 14 + "px";
-      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
-      heart.style.opacity = Math.random() * 0.5 + 0.4;
+
+      heart.innerHTML =
+        Math.random() > 0.5 ? "❤️" : "💗";
+
+      heart.style.left =
+        Math.random() * 100 + "vw";
+
+      heart.style.fontSize =
+        Math.random() * 22 + 14 + "px";
+
+      heart.style.animationDuration =
+        Math.random() * 3 + 4 + "s";
+
+      heart.style.opacity =
+        Math.random() * 0.5 + 0.4;
 
       document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 8000);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 8000);
     }
 
     setInterval(createHeart, 380);
